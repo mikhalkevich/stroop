@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to stroop!</title>
+    <link href="media/style.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div id="root"></div>
+    <a href="index.html">Обновить</a>
+    <script src="media/jquery.min.js"></script>
+    <script>
+        $(function () {
+            $.rand = function (arg) {
+                if ($.isArray(arg)) {
+                    return arg[$.rand(arg.length)];
+                } else if (typeof arg === "number") {
+                    return Math.floor(Math.random() * arg);
+                } else {
+                    return 4;  // chosen by fair dice roll
+                }
+            };
+            var arrColor = ['', 'red', 'blue', 'green', 'yellow', 'lime', 'magenta', 'black', 'gold', 'grey', 'tomato'];
+            for (i = 0; i < arrColor.length; i++) {
+                var rand = $.rand(arrColor);
+                if(rand != arrColor[i]){
+                    color = rand;
+                }else{
+                    color = $.rand(arrColor)
+                }
+                console.log(rand);
+                $('<span>').text(arrColor[i])
+                    .addClass('colo')
+                    .css('background', color)
+                    .appendTo('#root');
+                if (i % 5 == 0) {
+                    $('#root').append('<br /><br />');
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
